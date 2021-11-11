@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
+import * as echarts from 'echarts/core';
+
+
 @NgModule({
   declarations: [
     AppComponent
