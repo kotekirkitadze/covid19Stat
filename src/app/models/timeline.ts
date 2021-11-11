@@ -1,4 +1,8 @@
-interface TimelineResultAPI {
+export interface DataTimeline {
+  data: TimelineResultAPI[]
+}
+
+export interface TimelineResultAPI {
   update_at: string;
   date: Date;
   deaths: number;
@@ -8,9 +12,9 @@ interface TimelineResultAPI {
   new_recovered: number;
   new_death: number;
   active: number;
-}
+};
 
-interface TimelineResult {
+export interface TimelineResult {
   update_at: string;
   date: Date;
   totalDeaths: number;
