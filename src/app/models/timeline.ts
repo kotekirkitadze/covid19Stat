@@ -4,7 +4,7 @@ export interface DataTimeline {
 
 export interface TimelineResultAPI {
   update_at: string;
-  date: Date;
+  date: string;
   deaths: number;
   confirmed: number;
   recovered: number;
@@ -15,13 +15,13 @@ export interface TimelineResultAPI {
 };
 
 export interface TimelineResult {
-  update_at: string;
-  date: Date;
+  // update_at: string;
+  date: string;
   totalDeaths: number;
   totalConfirmed: number;
   totalRecovered: number;
-  new_confirmed: number;
-  new_recovered: number;
-  new_death: number;
-  active: number;
+  today_confirmed: number;
+  today_recovered: number;
+  today_death: number;
+  active_cases: number;
 }
