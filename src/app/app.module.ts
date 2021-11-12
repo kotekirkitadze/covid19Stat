@@ -14,13 +14,21 @@ import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
+import { NotFoundComponent } from './shell/not-found/not-found.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from './shared/material.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { Header } from 'primeng/api';
+import { HeaderComponent } from './shell/header/header.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimelineComponent
+    TimelineComponent,
+    NotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +41,9 @@ import { TableModule } from 'primeng/table';
     FormsModule,
     SelectButtonModule,
     CalendarModule,
-    TableModule
+    TableModule,
+    MaterialModule,
+    AppRoutingModule
   ],
   providers: [
     {
