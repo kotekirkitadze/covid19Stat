@@ -20,6 +20,7 @@ import { MaterialModule } from './shared/material.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Header } from 'primeng/api';
 import { HeaderComponent } from './shell/header/header.component';
+import { VisualizationCharComponentComponent } from './components/timeline/visualization-char-component/visualization-char-component.component';
 
 
 
@@ -28,7 +29,8 @@ import { HeaderComponent } from './shell/header/header.component';
     AppComponent,
     TimelineComponent,
     NotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    VisualizationCharComponentComponent
   ],
   imports: [
     BrowserModule,

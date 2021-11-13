@@ -11,30 +11,34 @@ import { DataApiService } from 'src/app/services/data-api.service';
 })
 export class TimelineComponent implements OnInit {
 
-  private _date: Date;
-  private chosenDate: string;
-
 
   handleDateFormat(value: Date) {
     if ((value.getMonth() + 1) < 10 && value.getDate() < 10) {
-      this.chosenDate = `${value.getFullYear()}-0${value.getMonth() + 1}-0${value.getDate()}`;
+      return `${value.getFullYear()}-0${value.getMonth() + 1}-0${value.getDate()}`;
     } else if ((value.getMonth() + 1) < 10 && value.getDate() > 10) {
-      this.chosenDate = `${value.getFullYear()}-0${value.getMonth() + 1}-${value.getDate()}`;
+      return `${value.getFullYear()}-0${value.getMonth() + 1}-${value.getDate()}`;
     } else if ((value.getMonth() + 1) > 9 && value.getDate() < 10) {
-      this.chosenDate = `${value.getFullYear()}-${value.getMonth() + 1}-0${value.getDate()}`;
+      return `${value.getFullYear()}-${value.getMonth() + 1}-0${value.getDate()}`;
     } else {
-      this.chosenDate = `${value.getFullYear()}-${value.getMonth() + 1}-${value.getDate()}`;
+      return `${value.getFullYear()}-${value.getMonth() + 1}-${value.getDate()}`;
     }
   }
 
-  // myToday = new Date();
-  // today = this.myToday.getFullYear() + '-' + (this.myToday.getMonth() + 1) + '-' + this.myToday.getDate();
-
-  set date(value: Date) {
-    this.handleDateFormat(value);
+  private chosenDate: string;
+  set date(value: string) {
+    console.log(value);
+    this.chosenDate = value;
     this.handleSelectedDay(this.chosenDate);
-    this._date = value;
   }
+
+
+
+  get date() {
+    return this.handleDateFormat(new Date());
+  }
+
+
+
   handleSelectedDay(date: string) {
     this.selectedData = this.data.filter(el => {
       return el.date == date
@@ -81,63 +85,4 @@ export class TimelineComponent implements OnInit {
       { field: 'quantity', header: 'Today Confirmed Recovered' }
     ];
   }
-
-
-  initChart(prev: TimelineResultAPI, curr: TimelineResultAPI) {
-    this.chartOption = {
-      title: {
-        text: 'Stacked Line'
-      },
-      tooltip: {
-        trigger: 'axis'
-      },
-      legend: {
-        data: ['Confirmed cases', 'Total Recovered', 'Total Death']
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
-      },
-      xAxis: {
-        type: 'category',
-        boundaryGap: true,
-        data: ['00:00', '23:00']
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [
-
-        {
-          name: 'Confirmed cases',
-          type: 'line',
-          stack: 'Total',
-          data: [prev.confirmed, curr.confirmed]
-        },
-        {
-          name: 'Total Recovered',
-          type: 'line',
-          stack: 'Total',
-          data: [prev.recovered, curr.recovered]
-        },
-        {
-          name: 'Total Death',
-          type: 'line',
-          stack: 'Total',
-          data: [prev.deaths, curr.deaths]
-        },
-
-      ]
-    };
-
-
-  }
-
 }

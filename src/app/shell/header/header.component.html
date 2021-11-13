@@ -1,1 +1,15 @@
- <button mat-button>Basic</button>
+<p>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="content">
+      <span>Covid 19 Statistics</span>
+     <div class="buttonCOntainer">
+        <button [routerLink]="['/timeline']" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+          Timeline
+        </button>
+        <button [routerLink]="['/tisasameline']" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+          Countries' Stat
+        </button>
+     </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</p>
