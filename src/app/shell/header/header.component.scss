@@ -1,17 +1,32 @@
-.buttonCOntainer {
+.buttonContainer {
   display: flex;
   justify-content: space-between;
   margin-right: 290px;
 }
 
-.buttonCOntainer > button{
-  width: 100%;
-  font-size: 20px;
-  // border: 2px solid red;
-  margin-right: 10px;
-}
 
 .content {
   display: flex;
   justify-content: space-between;
+}
+
+
+mat-icon{
+  font-size: 30px;
+  height: 56px;
+  width: 56px;
+  line-height: 56px;
+  color: white;
+}
+
+
+.eachButton > button {
+  width: 100%;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.menu{
+  position: relative;
+  right: -260px;
 }

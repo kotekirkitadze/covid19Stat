@@ -2,13 +2,30 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row class="content">
       <span>Covid 19 Statistics</span>
-     <div class="buttonCOntainer">
-        <button [routerLink]="['/timeline']" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+     <div class="buttonContainer">
+        <div *ngIf="!isScreenSmall" class="eachButton">
+          <button [routerLink]="['/timeline']" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
           Timeline
-        </button>
-        <button [routerLink]="['/country-info']" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-          Countries' Stat
-        </button>
+          </button>
+          <button [routerLink]="['/country-info']" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            Countries' Stat
+          </button>
+        </div>
+        <div class="menu" *ngIf="isScreenSmall">
+          <span class="example-spacer"></span>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>menu</mat-icon>
+            </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item
+                    [routerLink]="['/timeline']"
+                    >Timeline</button>
+            <button mat-menu-item
+                    [routerLink]="['/country-info']">
+                    Countries' Stat
+            </button>
+          </mat-menu>
+        </div>
      </div>
     </mat-toolbar-row>
   </mat-toolbar>
