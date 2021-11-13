@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 
 import { AppComponent } from './app.component';
-import { TIMELINE_API } from './services/data-api.service';
+import { COUNTRY_API, TIMELINE_API } from './services/data-api.service';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { CalendarModule } from 'primeng/calendar';
@@ -17,10 +17,12 @@ import { TableModule } from 'primeng/table';
 import { NotFoundComponent } from './shell/not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './shared/material.module';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { Header } from 'primeng/api';
 import { HeaderComponent } from './shell/header/header.component';
 import { VisualizationCharComponentComponent } from './components/timeline/visualization-char-component/visualization-char-component.component';
+import { CountryInfoShellComponent } from './components/country-info-shell/country-info-shell.component';
+import { TableComponent } from './components/country-info-shell/table/table.component';
+import { ListboxModule } from 'primeng/listbox';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -30,7 +32,9 @@ import { VisualizationCharComponentComponent } from './components/timeline/visua
     TimelineComponent,
     NotFoundComponent,
     HeaderComponent,
-    VisualizationCharComponentComponent
+    VisualizationCharComponentComponent,
+    CountryInfoShellComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -43,14 +47,21 @@ import { VisualizationCharComponentComponent } from './components/timeline/visua
     FormsModule,
     SelectButtonModule,
     CalendarModule,
+    ListboxModule,
     TableModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DropdownModule
+
   ],
   providers: [
     {
       provide: TIMELINE_API,
       useValue: environment.timelineApi
+    },
+    {
+      provide: COUNTRY_API,
+      useValue: environment.countriesApi
     }
   ],
   bootstrap: [AppComponent]

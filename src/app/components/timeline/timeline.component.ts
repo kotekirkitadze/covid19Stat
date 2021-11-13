@@ -26,7 +26,6 @@ export class TimelineComponent implements OnInit {
 
   private chosenDate: string;
   set date(value: string) {
-    console.log(value);
     this.chosenDate = value;
     this.handleSelectedDay(this.chosenDate);
   }

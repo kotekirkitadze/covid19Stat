@@ -1,0 +1,14 @@
+.country-item{
+  display: flex;
+  padding: 10px;
+  &> img{
+    margin-right: 20px;
+  }
+}
+
+p-dropdown{
+  // position: relative;
+  // left: 30%;
+  // transform: translate(-50%, -50%);
+  margin-left: 25%;
+}

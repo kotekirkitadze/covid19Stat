@@ -1,4 +1,4 @@
-interface CountryDataAPI {
+interface CountryData {
   population: number;
   dateOfUpdates: Date;
   deathPercent: number;
@@ -13,7 +13,11 @@ interface CountryDataAPI {
 }
 
 
-interface CountryDataAPI {
+export interface DataCountryInfoAPI {
+  data: CountryDataAPI[]
+}
+
+export interface CountryDataAPI {
   name: string;
   code: string;
   population: number;
@@ -36,4 +40,10 @@ interface CountryDataAPI {
     }
   }
 
+}
+
+
+export interface Country {
+  name: string,
+  code: string
 }
