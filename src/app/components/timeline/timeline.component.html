@@ -1,40 +1,45 @@
-<div class="p-field p-col-12 p-md-4">
-      <label for="basic">Choose Date: </label>
-      <p-calendar [ngModel]="date"
-                  (ngModelChange)="date=$event"
-                  [showIcon]="true"
-                  dataType="string"
-                  dateFormat="yy-mm-dd"
-                  inputId="icon"></p-calendar>
+
+<div class="dataContainer">
+  <app-visualization-char-component
+  [style]="'{{background-color: black}}'"
+  class="dataTable" [chosenData]='selectedData ? selectedData[0] : null'></app-visualization-char-component>
+
+
+  <div class="p-field p-col-12 p-md-4 calendar">
+        <!-- <label for="basic">Choose Date: </label> -->
+        <p-calendar [ngModel]="date"
+                    (ngModelChange)="date=$event"
+                    [showIcon]="true"
+                    dataType="string"
+                    dateFormat="yy-mm-dd"
+                    [inline]="true"
+                    inputId="icon"></p-calendar>
+  </div>
 </div>
 
-<p-table [value]='selectedData'   responsiveLayout="scroll">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Total Cases</th>
-            <th>Today Confirmed Cases</th>
-            <th>Total Death</th>
-            <th>Today Confirmed Death</th>
-            <th>Total Recovered</th>
-            <th>Today Confirmed Recovered</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-oneTimeline>
-        <tr>
-            <td>{{oneTimeline.totalConfirmed}}</td>
-            <td>{{oneTimeline.today_confirmed}}</td>
-            <td>{{oneTimeline.totalDeaths}}</td>
-            <td>{{oneTimeline.today_death}}</td>
-            <td>{{oneTimeline.totalRecovered}}</td>
+<div class="p-table">
+  <p-table [value]='selectedData' responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Total Cases</th>
+              <th>Today Confirmed Cases</th>
+              <th>Total Death</th>
+              <th>Today Confirmed Death</th>
+              <th>Total Recovered</th>
+              <th>Today Confirmed Recovered</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-oneTimeline>
+          <tr>
+              <td>{{oneTimeline.totalConfirmed}}</td>
+              <td>{{oneTimeline.today_confirmed}}</td>
+              <td>{{oneTimeline.totalDeaths}}</td>
+              <td>{{oneTimeline.today_death}}</td>
+              <td>{{oneTimeline.totalRecovered}}</td>
+              <td>{{oneTimeline.today_recovered}}</td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
 
-            <td>{{oneTimeline.today_recovered}}</td>
-        </tr>
-    </ng-template>
-</p-table>
-
-<!-- <div class="chart">
-  <div echarts [options]="chartOption" class="demo-chart"></div>
-</div> -->
-
-<app-visualization-char-component [chosenData]='selectedData ? selectedData[0] : null'></app-visualization-char-component>
 
