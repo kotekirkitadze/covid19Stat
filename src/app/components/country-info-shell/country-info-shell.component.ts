@@ -19,7 +19,7 @@ export class CountryInfoShellComponent implements OnInit {
 
   _selectedCountry: Country;
   set selectedCountry(value) {
-    // console.log(value)
+    console.log('sasa', value)
     this._selectedCountry = value;
   }
 

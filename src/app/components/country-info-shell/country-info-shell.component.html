@@ -22,4 +22,7 @@
     </ng-template>
 </p-dropdown>
 
-<app-table *ngIf="countriesInfo" [countriesInfo]="countriesInfo"></app-table>
+<app-table
+        *ngIf="countriesInfo"
+        [countriesInfo]="countriesInfo"
+        [selectedCountry]="selectedCountry"></app-table>

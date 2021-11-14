@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CountryData } from 'src/app/models/countryInfo';
+import { Country, CountryData } from 'src/app/models/countryInfo';
 
 @Component({
   selector: 'app-table',
@@ -9,35 +9,38 @@ import { CountryData } from 'src/app/models/countryInfo';
 export class TableComponent implements OnInit {
 
   private _countriesInfo: CountryData[];
+  temp: CountryData
+  _selectedCountry: CountryData[] | null;
+
+  @Input()
+  set selectedCountry(value: Country) {
+    this._selectedCountry = this._countriesInfo.filter(el => el.code == value?.code ? el : null);
+    console.log(this._selectedCountry)
+  };
+
 
   @Input()
   set countriesInfo(value: CountryData[]) {
+
     this._countriesInfo = value;
-    // console.log(value)
+
   };
 
   get countriesInfo() {
     return this._countriesInfo;
   }
 
-  selectedCountry: CountryData;
+
 
 
   constructor() { }
 
   ngOnInit(): void {
-    setTimeout(() => console.log(this.countriesInfo), 2000)
+    // setInterval(() => console.log(this.selectedCountry), 2000)
   }
 
-
-
-  customers1: any[];
-
-  customers2: any[];
-
-  selectedCustomer1: any;
-
-  selectedCustomer2: any;
-
+  handleSearching() {
+    return this._selectedCountry.length > 0 ? this._selectedCountry : this.countriesInfo;
+  }
 
 }
