@@ -13,9 +13,10 @@ export class VisualizationCharComponentComponent implements OnInit {
 
   @Input()
   set chosenData(value: TimelineResult) {
-    this.initChart(value);
+    this.initChart(value, this.categories);
     this.current = value;
   }
+  @Input() categories: string[];
 
   constructor() { }
 
@@ -25,7 +26,7 @@ export class VisualizationCharComponentComponent implements OnInit {
   chartOption: EChartsOption;
 
 
-  initChart(data: TimelineResult) {
+  initChart(data: TimelineResult, categories: string[]) {
     this.chartOption = {
       tooltip: {
         trigger: 'axis',
@@ -35,7 +36,7 @@ export class VisualizationCharComponentComponent implements OnInit {
       },
       xAxis: {
         type: 'category',
-        data: ["Total Cases", "Total Death", "Total Recovered"]
+        data: [...categories]
       },
       yAxis: {
         type: 'value'

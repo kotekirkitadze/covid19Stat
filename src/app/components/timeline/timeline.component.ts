@@ -11,6 +11,14 @@ import { DataApiService } from 'src/app/services/data-api.service';
 })
 export class TimelineComponent implements OnInit {
 
+  chartOption: EChartsOption;
+  cols: any;
+
+  data: TimelineResult[];
+  selectedData: TimelineResult[];
+
+  categories: string[] = ["Total Cases", "Total Death", "Total Recovered"];
+
 
   handleDateFormat(value: Date) {
     if ((value.getMonth() + 1) < 10 && value.getDate() < 10) {
@@ -30,13 +38,9 @@ export class TimelineComponent implements OnInit {
     this.handleSelectedDay(this.chosenDate);
   }
 
-
-
   get date() {
     return this.handleDateFormat(new Date());
   }
-
-
 
   handleSelectedDay(date: string) {
     this.selectedData = this.data.filter(el => {
@@ -45,12 +49,6 @@ export class TimelineComponent implements OnInit {
   }
 
   constructor(private apiService: DataApiService) { }
-
-  chartOption: EChartsOption;
-  cols: any;
-
-  data: TimelineResult[];
-  selectedData: TimelineResult[];
 
   mapData(data: TimelineResultAPI): TimelineResult {
     return {
