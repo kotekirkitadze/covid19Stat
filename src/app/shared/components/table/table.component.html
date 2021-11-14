@@ -7,16 +7,16 @@
          styleClass="p-datatable-customers">
     <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="country_name">Country<p-sortIcon field="country_name"></p-sortIcon></th>
-                <th pSortableColumn="population">Population <p-sortIcon field="population"></p-sortIcon></th>
-                <th pSortableColumn="death_percentage">Death percentage<p-sortIcon field="death_percentage"></p-sortIcon></th>
-                <th pSortableColumn="recovered_perc">Recovered perc<p-sortIcon field="recovered_perc"></p-sortIcon></th>
-                <th pSortableColumn="confirmed_cases">Confirmed cases<p-sortIcon field="confirmed_cases"></p-sortIcon></th>
-                <th pSortableColumn="today_confirmed_cases">Today confirmed cases <p-sortIcon field="today_confirmed_cases"></p-sortIcon></th>
-                <th pSortableColumn="total_death">Total death<p-sortIcon field="total_death"></p-sortIcon></th>
-                <th pSortableColumn="today_death">Today death<p-sortIcon field="today_death"></p-sortIcon></th>
-                <th pSortableColumn="total_recovered">Total recovered<p-sortIcon field="total_recovered"></p-sortIcon></th>
-                <th pSortableColumn="today_recovered">Today recovered<p-sortIcon field="today_recovered"></p-sortIcon></th>
+                <th pSortableColumn="name">Country<p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="population">Population<p-sortIcon field="population"></p-sortIcon></th>
+                <th pSortableColumn="deathPercent">Death percentage<p-sortIcon field="deathPercent"></p-sortIcon></th>
+                <th pSortableColumn="curedPercent">Recovered perc<p-sortIcon field="curedPercent"></p-sortIcon></th>
+                <th pSortableColumn="totalCases">Confirmed cases<p-sortIcon field="totalCases"></p-sortIcon></th>
+                <th pSortableColumn="currentDayCases">Today confirmed cases <p-sortIcon field="currentDayCases"></p-sortIcon></th>
+                <th pSortableColumn="totalDeathCases">Total death<p-sortIcon field="totalDeathCases"></p-sortIcon></th>
+                <th pSortableColumn="curerrentDayDeathCases">Today death<p-sortIcon field="curerrentDayDeathCases"></p-sortIcon></th>
+                <th pSortableColumn="totalCuredCases">Total recovered<p-sortIcon field="totalCuredCases"></p-sortIcon></th>
+                <th pSortableColumn="currentDayCuredCases">Today recovered<p-sortIcon field="currentDayCuredCases"></p-sortIcon></th>
             </tr>
     </ng-template>
     <ng-template pTemplate="body" let-country>
