@@ -15,28 +15,34 @@ interface City {
 })
 export class CountryInfoShellComponent implements OnInit {
   countries: Country[];
-  selectedCountry: Country;
-
   cointriesInfo: CountryData[];
 
+  _selectedCountry: Country;
+  set selectedCountry(value) {
+    console.log(value)
+    this._selectedCountry = value;
+  }
 
+  get selectedCountry() {
+    return this._selectedCountry;
+  }
 
   constructor(private http: DataApiService) { }
 
   ngOnInit(): void {
-
     this.http.getCountryData().subscribe(
       data => {
         this.cointriesInfo = data.map(this.mapCountry)
-        this.countries = data
+        this.countries = data.map(this.handleCountryMaping)
       }
     );
+  }
 
-    setTimeout(() => {
-      console.log(this.cointriesInfo)
-
-    }, 2000)
-
+  handleCountryMaping(el: CountryDataAPI): Country {
+    return {
+      code: el.code,
+      name: el.name
+    }
   }
 
   mapCountry(data: CountryDataAPI): CountryData {
@@ -52,8 +58,6 @@ export class CountryInfoShellComponent implements OnInit {
       curerrentDayDeathCases: data.today.deaths,
       currentDayCases: data.today.confirmed,
       currentDayCuredCases: null,
-
     }
   }
-
 }

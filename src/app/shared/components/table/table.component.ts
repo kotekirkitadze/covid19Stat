@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CountryData } from 'src/app/models/countryInfo';
 
 @Component({
   selector: 'app-table',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
+
+  @Input() cointriesInfo: CountryData[]
+
 
   constructor() { }
 
