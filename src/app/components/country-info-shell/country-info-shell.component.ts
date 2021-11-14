@@ -14,9 +14,19 @@ export class CountryInfoShellComponent implements OnInit {
   private _rangeDates: Date[];
   private handledDates: string[] = [];
 
+  minDateValue = new Date();
+
+  maxDateValue = new Date();
+
+
+  handleLastThreeMonth() {
+    this.minDateValue.setMonth(this.minDateValue.getMonth() - 3)
+  }
+
   set rangeDates(value: Date[]) {
     this._rangeDates = value;
     this.handleDataFormating(value);
+    console.log(value)
   }
 
   get rangeDates() {
@@ -38,16 +48,28 @@ export class CountryInfoShellComponent implements OnInit {
   set selectedCountry(value) {
     this._selectedCountry = value;
     this.http.getCountryDataByCode(value.code).pipe(
-      this.handleSelectedCountryMapping()
+      this.handleSelectedCountryMapping(),
+      this.handleLastThreeMonthData()
     ).subscribe(console.log)
 
+  }
+
+  handleLastThreeMonthData() {
+    return map<CountryData, CountryData>(d => {
+      return {
+        ...d,
+        timeline: d.timeline.filter(el => +el.date.split('-')[1] > this.minDateValue.getMonth() &&
+          +el.date.split('-')[0] >= this.minDateValue.getFullYear())
+      }
+    })
   }
 
   handleSelectedCountryMapping() {
     return map<CountryDataAPI, CountryData>(el => {
       return {
         ...mapCountryData(el),
-        timeline: el.timeline.map(mapTimelineData)
+        timeline: el.timeline.map(mapTimelineData).filter(el => +el.date.split('-')[1] > this.minDateValue.getMonth() &&
+          +el.date.split('-')[0] >= this.minDateValue.getFullYear())
       }
     })
   }
@@ -59,6 +81,8 @@ export class CountryInfoShellComponent implements OnInit {
   constructor(private http: DataApiService) { }
 
   ngOnInit(): void {
+    this.handleLastThreeMonth();
+    console.log(typeof this.minDateValue.getFullYear())
     this.http.getCountryData().subscribe(
       (data: CountryDataAPI[]) => {
         this.countriesInfo = data.map(mapCountryData)

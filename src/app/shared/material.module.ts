@@ -19,7 +19,8 @@ import { TableModule } from 'primeng/table';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   exports: [
     MatButtonModule,
     MatToolbarModule,

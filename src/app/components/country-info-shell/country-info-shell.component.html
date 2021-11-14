@@ -1,4 +1,4 @@
-<!-- <p-dropdown [options]="countries"
+ <p-dropdown [options]="countries"
             [(ngModel)]="selectedCountry"
             optionLabel="name"
             [filter]="true"
@@ -25,7 +25,7 @@
 <app-table
         *ngIf="countriesInfo"
         [countriesInfo]="countriesInfo"
-        [selectedCountry]="selectedCountry"></app-table> -->
+        [selectedCountry]="selectedCountry"></app-table>
 
 
 <div class="p-field p-col-12 p-md-4">
@@ -34,5 +34,10 @@
        [(ngModel)]="rangeDates"
        selectionMode="range"
        [readonlyInput]="true"
-       inputId="range"></p-calendar>
+       inputId="range"
+       [minDate]="minDateValue"
+       [maxDate]="maxDateValue"></p-calendar>
 </div>
+
+
+<app-line-chart></app-line-chart>
