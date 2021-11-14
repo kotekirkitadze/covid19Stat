@@ -1,4 +1,4 @@
-interface CountryData {
+export interface CountryData {
   population: number;
   dateOfUpdates: Date;
   deathPercent: number;
@@ -7,7 +7,7 @@ interface CountryData {
   totalCases: number;
   currentDayCases: number;
   totalDeathCases: number;
-  curerrentDayDeathCases: number;
+  curerrentDayDeathCases: string;
   totalCuredCases: number;
   currentDayCuredCases: number;
 }
@@ -21,7 +21,7 @@ export interface CountryDataAPI {
   name: string;
   code: string;
   population: number;
-  updated_at: string;
+  updated_at: Date;
   today: {
     deaths: string;
     confirmed: 0;

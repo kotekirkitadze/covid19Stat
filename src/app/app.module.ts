@@ -17,7 +17,7 @@ import { ViewComponentsModule } from './shared/material.module';
 import { HeaderComponent } from './shell/header/header.component';
 import { VisualizationCharComponentComponent } from './shared/components/visualization-char-component/visualization-char-component.component';
 import { CountryInfoShellComponent } from './components/country-info-shell/country-info-shell.component';
-import { TableComponent } from './components/country-info-shell/table/table.component';
+import { TableComponent } from './shared/components/table/table.component';
 
 
 

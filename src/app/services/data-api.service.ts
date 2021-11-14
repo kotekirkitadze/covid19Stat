@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Country, DataCountryInfoAPI } from '../models/countryInfo';
+import { map, tap } from 'rxjs/operators';
+import { Country, CountryDataAPI, DataCountryInfoAPI } from '../models/countryInfo';
 import { DataTimeline, TimelineResultAPI } from '../models/timeline';
 
 
@@ -23,12 +23,9 @@ export class DataApiService {
     );
   }
 
-  getCountryData(): Observable<Country[]> {
+  getCountryData(): Observable<CountryDataAPI[]> {
     return this.http.get<DataCountryInfoAPI>(this.country_url).pipe(
-      map(el => el.data),
-      map(d => d.map(el => {
-        return { name: el.name, code: el.code }
-      }))
+      map(el => el.data)
     )
   }
 
