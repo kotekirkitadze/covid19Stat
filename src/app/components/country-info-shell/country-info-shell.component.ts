@@ -15,11 +15,11 @@ interface City {
 })
 export class CountryInfoShellComponent implements OnInit {
   countries: Country[];
-  cointriesInfo: CountryData[];
+  countriesInfo: CountryData[];
 
   _selectedCountry: Country;
   set selectedCountry(value) {
-    console.log(value)
+    // console.log(value)
     this._selectedCountry = value;
   }
 
@@ -32,7 +32,8 @@ export class CountryInfoShellComponent implements OnInit {
   ngOnInit(): void {
     this.http.getCountryData().subscribe(
       data => {
-        this.cointriesInfo = data.map(this.mapCountry)
+        this.countriesInfo = data.map(this.mapCountry)
+        console.log('sasa', this.countriesInfo)
         this.countries = data.map(this.handleCountryMaping)
       }
     );
@@ -47,6 +48,8 @@ export class CountryInfoShellComponent implements OnInit {
 
   mapCountry(data: CountryDataAPI): CountryData {
     return {
+      name: data.name,
+      code: data.code,
       totalCases: data.latest_data.confirmed,
       totalCuredCases: data.latest_data.recovered,
       totalDeathCases: data.latest_data.deaths,

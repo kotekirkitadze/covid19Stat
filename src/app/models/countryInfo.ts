@@ -1,4 +1,6 @@
 export interface CountryData {
+  name: string;
+  code: string;
   population: number;
   dateOfUpdates: Date;
   deathPercent: number;

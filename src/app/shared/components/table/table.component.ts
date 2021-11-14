@@ -8,13 +8,27 @@ import { CountryData } from 'src/app/models/countryInfo';
 })
 export class TableComponent implements OnInit {
 
-  @Input() cointriesInfo: CountryData[]
+  private _countriesInfo: CountryData[];
+
+  @Input()
+  set countriesInfo(value: CountryData[]) {
+    this._countriesInfo = value;
+    // console.log(value)
+  };
+
+  get countriesInfo() {
+    return this._countriesInfo;
+  }
+
+  selectedCountry: CountryData;
 
 
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(() => console.log(this.countriesInfo), 2000)
   }
+
 
 
   customers1: any[];
