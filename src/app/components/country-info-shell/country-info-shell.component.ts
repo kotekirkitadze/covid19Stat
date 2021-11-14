@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country, CountryData, CountryDataAPI } from 'src/app/models/countryInfo';
 import { DataApiService } from 'src/app/services/data-api.service';
-
-interface City {
-  name: string,
-  code: string
-}
-
+import { mapCountryData } from '../../shared/utils/mapping.fn';
 
 @Component({
   selector: 'app-country-info-shell',
@@ -19,7 +14,6 @@ export class CountryInfoShellComponent implements OnInit {
 
   _selectedCountry: Country;
   set selectedCountry(value) {
-    console.log('sasa', value)
     this._selectedCountry = value;
   }
 
@@ -31,36 +25,21 @@ export class CountryInfoShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.getCountryData().subscribe(
-      data => {
-        this.countriesInfo = data.map(this.mapCountry)
-        console.log('sasa', this.countriesInfo)
+      (data: CountryDataAPI[]) => {
+        this.countriesInfo = data.map(mapCountryData)
         this.countries = data.map(this.handleCountryMaping)
       }
     );
+
+    setTimeout(() => {
+      this.http.getCountryDataByCode('GE').subscribe(console.log)
+    }, 2000)
   }
 
   handleCountryMaping(el: CountryDataAPI): Country {
     return {
       code: el.code,
       name: el.name
-    }
-  }
-
-  mapCountry(data: CountryDataAPI): CountryData {
-    return {
-      name: data.name,
-      code: data.code,
-      totalCases: data.latest_data.confirmed,
-      totalCuredCases: data.latest_data.recovered,
-      totalDeathCases: data.latest_data.deaths,
-      population: data.population,
-      dateOfUpdates: data.updated_at,
-      curedPercent: data.latest_data.calculated.recovery_rate,
-      casesPerMillion: data.latest_data.calculated.cases_per_million_population,
-      deathPercent: data.latest_data.calculated.death_rate,
-      curerrentDayDeathCases: data.today.deaths,
-      currentDayCases: data.today.confirmed,
-      currentDayCuredCases: null,
     }
   }
 }

@@ -1,3 +1,5 @@
+import { TimelineResult, TimelineResultAPI } from "./timeline";
+
 export interface CountryData {
   name: string;
   code: string;
@@ -12,11 +14,12 @@ export interface CountryData {
   curerrentDayDeathCases: string;
   totalCuredCases: number;
   currentDayCuredCases: number;
+  timeline?: TimelineResult[]
 }
 
 
 export interface DataCountryInfoAPI {
-  data: CountryDataAPI[]
+  data: CountryDataAPI[] | CountryDataAPI
 }
 
 export interface CountryDataAPI {
@@ -41,6 +44,7 @@ export interface CountryDataAPI {
       cases_per_million_population: number;
     }
   }
+  timeline?: TimelineResultAPI[]
 
 }
 

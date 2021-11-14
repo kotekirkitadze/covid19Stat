@@ -23,10 +23,15 @@ export class DataApiService {
     );
   }
 
-  getCountryData(): Observable<CountryDataAPI[]> {
+  getCountryData(): Observable<CountryDataAPI[] | CountryDataAPI> {
     return this.http.get<DataCountryInfoAPI>(this.country_url).pipe(
       map(el => el.data)
     )
+  }
+
+  getCountryDataByCode(code: string): Observable<CountryDataAPI | CountryDataAPI[]> {
+    return this.http.get<DataCountryInfoAPI>(`${this.country_url}/${code}`)
+      .pipe(map(el => el.data))
   }
 
 
