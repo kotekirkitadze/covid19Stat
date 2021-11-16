@@ -1,4 +1,4 @@
-import { CountryData, CountryDataAPI } from "src/app/models/countryInfo";
+import { CountryData, CountryDataAPI, Country } from "src/app/models/countryInfo";
 import { TimelineResult, TimelineResultAPI } from "src/app/models/timeline";
 
 export function mapTimelineData(data: TimelineResultAPI): TimelineResult {
@@ -26,8 +26,16 @@ export function mapCountryData(data: CountryDataAPI): CountryData {
     curedPercent: data.latest_data.calculated.recovery_rate,
     casesPerMillion: data.latest_data.calculated.cases_per_million_population,
     deathPercent: data.latest_data.calculated.death_rate,
-    curerrentDayDeathCases: data.today.deaths,
-    currentDayCases: data.today.confirmed,
-    currentDayCuredCases: null,
+    curerrentDayDeathCases: data.latest_data.deaths,
+    currentDayCases: data.latest_data.confirmed,
+    currentDayCuredCases: data.latest_data.recovered,
+  }
+}
+
+
+export function handleCountryMaping(el: CountryDataAPI): Country {
+  return {
+    code: el.code,
+    name: el.name
   }
 }

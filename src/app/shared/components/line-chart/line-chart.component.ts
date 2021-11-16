@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 
+interface Structure {
+  name: string;
+  type: string;
+  stack: string;
+  data: number[]
+}
+
+
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
@@ -11,13 +19,13 @@ export class LineChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.initChart()
+
   }
 
 
   chartOption: EChartsOption;
 
-  initChart() {
+  initChart(structureData: any, categoryData: string[], legendData: string[]) {
     this.chartOption = {
       title: {
         text: 'Stacked Line'
@@ -42,51 +50,24 @@ export class LineChartComponent implements OnInit {
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: [...categoryData]
       },
       yAxis: {
         type: 'value'
       },
       series: [
-        {
-          name: 'Email',
-          type: 'line',
-          stack: 'Total',
-          data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-          name: 'Union Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-          name: 'Video Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-          name: 'Direct',
-          type: 'line',
-          stack: 'Total',
-          data: [320, 332, 301, 334, 390, 330, 320]
-        },
-        {
-          name: 'Search Engine',
-          type: 'line',
-          stack: 'Total',
-          data: [820, 932, 901, 934, 1290, 1330, 1320]
-        }
+        ...structureData
       ]
     };
 
   }
 
-
-
-
-
-
-
+  buildStructure(d: Structure): Structure {
+    return {
+      name: d.name,
+      type: d.type,
+      stack: d.stack,
+      data: d.data
+    }
+  }
 }

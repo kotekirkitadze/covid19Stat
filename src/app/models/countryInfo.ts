@@ -11,7 +11,7 @@ export interface CountryData {
   totalCases: number;
   currentDayCases: number;
   totalDeathCases: number;
-  curerrentDayDeathCases: string;
+  curerrentDayDeathCases: number;
   totalCuredCases: number;
   currentDayCuredCases: number;
   timeline?: TimelineResult[]

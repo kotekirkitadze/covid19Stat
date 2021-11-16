@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Country, CountryData, CountryDataAPI } from 'src/app/models/countryInfo';
 import { DataApiService } from 'src/app/services/data-api.service';
-import { mapCountryData, mapTimelineData } from '../../shared/utils/mapping.fn';
+import { mapCountryData, mapTimelineData, handleCountryMaping } from '../../shared/utils/mapping.fn';
 import { handleDateFormat } from '../../shared/utils/handling.fn'
+
+interface LineCHart {
+  categoRies: string[],
+
+}
+
 
 @Component({
   selector: 'app-country-info-shell',
@@ -15,22 +21,24 @@ export class CountryInfoShellComponent implements OnInit {
   private handledDates: string[] = [];
 
   minDateValue = new Date();
-
   maxDateValue = new Date();
 
 
-  handleLastThreeMonth() {
-    this.minDateValue.setMonth(this.minDateValue.getMonth() - 3)
-  }
 
   set rangeDates(value: Date[]) {
     this._rangeDates = value;
     this.handleDataFormating(value);
-    console.log(value)
+    console.log(this.handledDates)
   }
 
   get rangeDates() {
     return this._rangeDates;
+  }
+
+
+
+  handleLastThreeMonth() {
+    this.minDateValue.setMonth(this.minDateValue.getMonth() - 3)
   }
 
   handleDataFormating(value: Date[]) {
@@ -48,30 +56,27 @@ export class CountryInfoShellComponent implements OnInit {
   set selectedCountry(value) {
     this._selectedCountry = value;
     this.http.getCountryDataByCode(value.code).pipe(
-      this.handleSelectedCountryMapping(),
-      this.handleLastThreeMonthData()
+      map<CountryDataAPI, CountryData>(el =>
+        this.handleSelectedCountryMapping(el)),
+      map<CountryData, CountryData>(el => this.handleLastThreeMonthData(el))
     ).subscribe(console.log)
 
   }
 
-  handleLastThreeMonthData() {
-    return map<CountryData, CountryData>(d => {
-      return {
-        ...d,
-        timeline: d.timeline.filter(el => +el.date.split('-')[1] > this.minDateValue.getMonth() &&
-          +el.date.split('-')[0] >= this.minDateValue.getFullYear())
-      }
-    })
+  handleLastThreeMonthData(d: CountryData) {
+    return {
+      ...d,
+      timeline: d.timeline.filter(el => +el.date.split('-')[1] > this.minDateValue.getMonth() &&
+        +el.date.split('-')[0] >= this.minDateValue.getFullYear())
+    }
   }
 
-  handleSelectedCountryMapping() {
-    return map<CountryDataAPI, CountryData>(el => {
-      return {
-        ...mapCountryData(el),
-        timeline: el.timeline.map(mapTimelineData).filter(el => +el.date.split('-')[1] > this.minDateValue.getMonth() &&
-          +el.date.split('-')[0] >= this.minDateValue.getFullYear())
-      }
-    })
+  handleSelectedCountryMapping(el: CountryDataAPI) {
+    return {
+      ...mapCountryData(el),
+      timeline: el.timeline.map(mapTimelineData).filter(el => +el.date.split('-')[1] > this.minDateValue.getMonth() &&
+        +el.date.split('-')[0] >= this.minDateValue.getFullYear())
+    }
   }
 
   get selectedCountry() {
@@ -86,15 +91,9 @@ export class CountryInfoShellComponent implements OnInit {
     this.http.getCountryData().subscribe(
       (data: CountryDataAPI[]) => {
         this.countriesInfo = data.map(mapCountryData)
-        this.countries = data.map(this.handleCountryMaping)
+        this.countries = data.map(handleCountryMaping)
       }
     );
   }
 
-  handleCountryMaping(el: CountryDataAPI): Country {
-    return {
-      code: el.code,
-      name: el.name
-    }
-  }
 }
