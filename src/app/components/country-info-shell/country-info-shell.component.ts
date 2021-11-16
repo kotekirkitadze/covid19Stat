@@ -4,6 +4,7 @@ import { Country, CountryData, CountryDataAPI } from 'src/app/models/countryInfo
 import { DataApiService } from 'src/app/services/data-api.service';
 import { mapCountryData, mapTimelineData, handleCountryMaping } from '../../shared/utils/mapping.fn';
 import { handleDateFormat } from '../../shared/utils/handling.fn'
+import { TimelineResult } from '../../models/timeline';
 
 interface LineCHart {
   categoRies: string[],
@@ -24,11 +25,40 @@ export class CountryInfoShellComponent implements OnInit {
   maxDateValue = new Date();
 
 
+  // "2021-11-02"
+  // "2021-11-04"
+
+  //2022-02-28
+  //2021-12-27
+
+  handleTransferData(dates: string[]) {
+    // let startDate = dates[0].split('-');
+    // let endDate = dates[1].split('-');
+    // if (startDate[0] < endDate[0]){
+
+    // }
+    console.log(this.countryData.timeline);
+    this.forTransfering = [];
+    this.countryData.timeline.forEach(el => {
+      if (el.date == dates[0] || el.date == dates[1]) {
+        this.forTransfering.push(el)
+      }
+    })
+
+    console.log(this.forTransfering);
+
+
+  }
+
+
+  countryData: CountryData;
+  forTransfering: TimelineResult[] = [];
 
   set rangeDates(value: Date[]) {
     this._rangeDates = value;
     this.handleDataFormating(value);
-    console.log(this.handledDates)
+    console.log(this.handledDates);
+    this.handleTransferData(this.handledDates)
   }
 
   get rangeDates() {
@@ -59,7 +89,7 @@ export class CountryInfoShellComponent implements OnInit {
       map<CountryDataAPI, CountryData>(el =>
         this.handleSelectedCountryMapping(el)),
       map<CountryData, CountryData>(el => this.handleLastThreeMonthData(el))
-    ).subscribe(console.log)
+    ).subscribe(el => this.countryData = el);
 
   }
 

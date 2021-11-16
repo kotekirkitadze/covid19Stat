@@ -25,7 +25,7 @@ export class LineChartComponent implements OnInit {
 
   chartOption: EChartsOption;
 
-  initChart(structureData: any, categoryData: string[], legendData: string[]) {
+  initChart(structureData: any[], categoryData: string[], legendData: string[]) {
     this.chartOption = {
       title: {
         text: 'Stacked Line'
