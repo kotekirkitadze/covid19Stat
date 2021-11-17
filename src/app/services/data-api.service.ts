@@ -31,7 +31,7 @@ export class DataApiService {
 
   getCountryDataByCode(code: string): Observable<CountryDataAPI | CountryDataAPI[]> {
     return this.http.get<DataCountryInfoAPI>(`${this.country_url}/${code}`)
-      .pipe(map(el => el.data), tap(console.log))
+      .pipe(map(el => el.data))
   }
 
 

@@ -5,6 +5,7 @@ import { DataApiService } from 'src/app/services/data-api.service';
 import { mapCountryData, mapTimelineData, handleCountryMaping } from '../../shared/utils/mapping.fn';
 import { handleDateFormat } from '../../shared/utils/handling.fn'
 import { TimelineResult } from '../../models/timeline';
+import { LineBarData } from 'src/app/models/line-bar';
 
 interface LineCHart {
   categoRies: string[],
@@ -50,17 +51,34 @@ export class CountryInfoShellComponent implements OnInit {
 
   set rangeDates(value: Date[]) {
     this._rangeDates = value;
-
     this.handleDataFormating(this.getDaysArray(value[0], value[1]));
     this.handleTransferData(this.handledDates)
+    if (value[1] != null) {
+      console.log(this.mapLineBarData(this.forTransfering.reverse()));
+    }
 
   }
+
+  mapLineBarData(data: TimelineResult[]): LineBarData {
+    return {
+      category: data.map(el => el.date),
+      legend: Object.keys(data[0])?.filter(el => el == 'totalDeaths'
+        || el == 'totalConfirmed' || el == 'totalRecovered'),
+      structureData: data.map(el => {
+        return {
+          totalDeaths: el.totalDeaths,
+          totalConfirmed: el.totalConfirmed,
+          totalRecovered: el.totalRecovered,
+          date: el.date
+        }
+      })
+    }
+  }
+
 
   get rangeDates() {
     return this._rangeDates;
   }
-
-
 
   handleLastThreeMonth() {
     this.minDateValue.setMonth(this.minDateValue.getMonth() - 3)

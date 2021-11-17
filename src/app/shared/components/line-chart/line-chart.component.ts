@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { LineBarData } from 'src/app/models/line-bar';
 
 interface Structure {
   name: string;
@@ -16,7 +17,7 @@ interface Structure {
 })
 export class LineChartComponent implements OnInit {
 
-
+  @Input() lineBarData: LineBarData;
 
   constructor() { }
 
