@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 
 interface Structure {
@@ -15,6 +15,8 @@ interface Structure {
   styleUrls: ['./line-chart.component.scss']
 })
 export class LineChartComponent implements OnInit {
+
+
 
   constructor() { }
 

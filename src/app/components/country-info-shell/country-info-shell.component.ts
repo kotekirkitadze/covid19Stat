@@ -25,28 +25,22 @@ export class CountryInfoShellComponent implements OnInit {
   maxDateValue = new Date();
 
 
-  // "2021-11-02"
-  // "2021-11-04"
-
-  //2022-02-28
-  //2021-12-27
+  getDaysArray(start, end) {
+    for (var arr = [], dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
+      arr.push(new Date(dt));
+    }
+    return arr;
+  };
 
   handleTransferData(dates: string[]) {
-    // let startDate = dates[0].split('-');
-    // let endDate = dates[1].split('-');
-    // if (startDate[0] < endDate[0]){
-
-    // }
-    console.log(this.countryData.timeline);
     this.forTransfering = [];
     this.countryData.timeline.forEach(el => {
-      if (el.date == dates[0] || el.date == dates[1]) {
-        this.forTransfering.push(el)
-      }
+      this.handledDates.forEach(d => {
+        if (el.date == d) {
+          this.forTransfering.push(el);
+        }
+      })
     })
-
-    console.log(this.forTransfering);
-
 
   }
 
@@ -56,9 +50,10 @@ export class CountryInfoShellComponent implements OnInit {
 
   set rangeDates(value: Date[]) {
     this._rangeDates = value;
-    this.handleDataFormating(value);
-    console.log(this.handledDates);
+
+    this.handleDataFormating(this.getDaysArray(value[0], value[1]));
     this.handleTransferData(this.handledDates)
+
   }
 
   get rangeDates() {
@@ -117,7 +112,6 @@ export class CountryInfoShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleLastThreeMonth();
-    console.log(typeof this.minDateValue.getFullYear())
     this.http.getCountryData().subscribe(
       (data: CountryDataAPI[]) => {
         this.countriesInfo = data.map(mapCountryData)
