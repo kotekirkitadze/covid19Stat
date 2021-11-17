@@ -19,6 +19,7 @@ import { VisualizationCharComponentComponent } from './shared/components/visuali
 import { CountryInfoShellComponent } from './components/country-info-shell/country-info-shell.component';
 import { TableComponent } from './shared/components/table/table.component';
 import { LineChartComponent } from './shared/components/line-chart/line-chart.component'
+import { BarChartComponent } from './shared/components/bar-chart/bar-chart.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { LineChartComponent } from './shared/components/line-chart/line-chart.co
     VisualizationCharComponentComponent,
     LineChartComponent,
     CountryInfoShellComponent,
-    TableComponent
+    TableComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,

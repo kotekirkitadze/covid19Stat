@@ -1,14 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
-import { LineBarData } from 'src/app/models/line-bar';
-
-interface Structure {
-  name: string;
-  type: string;
-  stack: string;
-  data: number[]
-}
-
+import { LineBarData } from 'src/app/models/eCharts-model';
 
 @Component({
   selector: 'app-line-chart',
@@ -19,7 +11,6 @@ export class LineChartComponent implements OnInit {
 
   @Input()
   set lineBarData(value: LineBarData) {
-    console.log('child', value)
     this.initChart(value?.structureData, value?.category, value?.legend)
   }
 
@@ -29,10 +20,10 @@ export class LineChartComponent implements OnInit {
 
   }
 
-
   chartOption: EChartsOption;
 
   initChart(structureData: any[], categoryData: string[], legendData: string[]) {
+    console.log(typeof structureData[0])
     if (legendData != null) {
       this.chartOption = {
         title: {
@@ -67,17 +58,6 @@ export class LineChartComponent implements OnInit {
           ...structureData
         ]
       };
-    }
-
-
-  }
-
-  buildStructure(d: Structure): Structure {
-    return {
-      name: d.name,
-      type: d.type,
-      stack: d.stack,
-      data: d.data
     }
   }
 }
