@@ -7,12 +7,6 @@ import { handleDateFormat } from '../../shared/utils/handling.fn'
 import { TimelineResult } from '../../models/timeline';
 import { LineBarData } from 'src/app/models/line-bar';
 
-interface LineCHart {
-  categoRies: string[],
-
-}
-
-
 @Component({
   selector: 'app-country-info-shell',
   templateUrl: './country-info-shell.component.html',
@@ -25,6 +19,7 @@ export class CountryInfoShellComponent implements OnInit {
   minDateValue = new Date();
   maxDateValue = new Date();
 
+  lineBarData: LineBarData;
 
   getDaysArray(start, end) {
     for (var arr = [], dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
@@ -54,27 +49,38 @@ export class CountryInfoShellComponent implements OnInit {
     this.handleDataFormating(this.getDaysArray(value[0], value[1]));
     this.handleTransferData(this.handledDates)
     if (value[1] != null) {
-      console.log(this.mapLineBarData(this.forTransfering.reverse()));
+      this.lineBarData = this.mapLineBarData(this.forTransfering.reverse());
     }
 
   }
 
   mapLineBarData(data: TimelineResult[]): LineBarData {
+    let category = data.map(el => el.date)
+    let legend = Object.keys(data[0])?.filter(el => el == 'totalDeaths'
+      || el == 'totalConfirmed' || el == 'totalRecovered')
+    console.log('qwqwq', this.buildStructure(data, legend))
     return {
-      category: data.map(el => el.date),
-      legend: Object.keys(data[0])?.filter(el => el == 'totalDeaths'
-        || el == 'totalConfirmed' || el == 'totalRecovered'),
-      structureData: data.map(el => {
-        return {
-          totalDeaths: el.totalDeaths,
-          totalConfirmed: el.totalConfirmed,
-          totalRecovered: el.totalRecovered,
-          date: el.date
-        }
-      })
+      category: category,
+      legend: legend,
+      structureData: this.buildStructure(data, legend)
     }
   }
 
+
+  buildStructure(d: TimelineResult[], legend: string[]) {
+
+    console.log(d)
+    return legend.map(el => {
+      console.log('ssss', d[el])
+      return {
+        name: el,
+        type: 'line',
+        stack: 'Total',
+        data: d.map(element => element[el])
+      }
+    })
+
+  }
 
   get rangeDates() {
     return this._rangeDates;
@@ -139,3 +145,28 @@ export class CountryInfoShellComponent implements OnInit {
   }
 
 }
+
+
+
+
+// buildStructure(d: TimelineResult[], c: string[]) {
+//   return c.map(el => {
+//     return {
+//       name: el,
+//       type: 'line',
+//       stack: 'Total',
+//       data: d.map(q => {
+//         console.log('ifebi', Object.keys(d).map(b => b == el))
+//         if (Object.keys(d).map(b => b == el)) {
+//           console.log(q)
+//           return d.map(o => o[el])
+
+//         }
+//         else {
+//           return 0;
+//         }
+//       })
+//     }
+//   })
+
+// }

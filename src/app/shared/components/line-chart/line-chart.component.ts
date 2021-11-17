@@ -17,7 +17,11 @@ interface Structure {
 })
 export class LineChartComponent implements OnInit {
 
-  @Input() lineBarData: LineBarData;
+  @Input()
+  set lineBarData(value: LineBarData) {
+    console.log('child', value)
+    this.initChart(value?.structureData, value?.category, value?.legend)
+  }
 
   constructor() { }
 
@@ -37,7 +41,7 @@ export class LineChartComponent implements OnInit {
         trigger: 'axis'
       },
       legend: {
-        data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+        data: [...legendData]
       },
       grid: {
         left: '3%',
