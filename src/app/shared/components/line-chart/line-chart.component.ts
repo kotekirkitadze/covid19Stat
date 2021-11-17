@@ -33,39 +33,42 @@ export class LineChartComponent implements OnInit {
   chartOption: EChartsOption;
 
   initChart(structureData: any[], categoryData: string[], legendData: string[]) {
-    this.chartOption = {
-      title: {
-        text: 'Stacked Line'
-      },
-      tooltip: {
-        trigger: 'axis'
-      },
-      legend: {
-        data: [...legendData]
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
-      },
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: [...categoryData]
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [
-        ...structureData
-      ]
-    };
+    if (legendData != null) {
+      this.chartOption = {
+        title: {
+          text: 'Stacked Line'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: [...legendData]
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: [...categoryData]
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          ...structureData
+        ]
+      };
+    }
+
 
   }
 

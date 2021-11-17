@@ -40,7 +40,6 @@ export class CountryInfoShellComponent implements OnInit {
 
   }
 
-
   countryData: CountryData;
   forTransfering: TimelineResult[] = [];
 
@@ -51,7 +50,6 @@ export class CountryInfoShellComponent implements OnInit {
     if (value[1] != null) {
       this.lineBarData = this.mapLineBarData(this.forTransfering.reverse());
     }
-
   }
 
   mapLineBarData(data: TimelineResult[]): LineBarData {
@@ -68,8 +66,6 @@ export class CountryInfoShellComponent implements OnInit {
 
 
   buildStructure(d: TimelineResult[], legend: string[]) {
-
-    console.log(d)
     return legend.map(el => {
       console.log('ssss', d[el])
       return {
@@ -104,12 +100,26 @@ export class CountryInfoShellComponent implements OnInit {
   _selectedCountry: Country;
   set selectedCountry(value) {
     this._selectedCountry = value;
-    this.http.getCountryDataByCode(value.code).pipe(
-      map<CountryDataAPI, CountryData>(el =>
-        this.handleSelectedCountryMapping(el)),
-      map<CountryData, CountryData>(el => this.handleLastThreeMonthData(el))
-    ).subscribe(el => this.countryData = el);
+    console.log('ccc', this._selectedCountry)
+    if (this._selectedCountry) {
+      this.http.getCountryDataByCode(value.code).pipe(
+        map<CountryDataAPI, CountryData>(el =>
+          this.handleSelectedCountryMapping(el)),
+        map<CountryData, CountryData>(el => this.handleLastThreeMonthData(el))
+      ).subscribe(el => this.countryData = el);
+    } else {
+      this.resetData();
+    }
+  }
 
+  resetData() {
+    this._selectedCountry = null;
+    this.countryData = null;
+    this._rangeDates = [];
+    this.handledDates = [];
+    this.minDateValue = new Date();
+    this.maxDateValue = new Date();
+    this.lineBarData = null;
   }
 
   handleLastThreeMonthData(d: CountryData) {
@@ -143,30 +153,4 @@ export class CountryInfoShellComponent implements OnInit {
       }
     );
   }
-
 }
-
-
-
-
-// buildStructure(d: TimelineResult[], c: string[]) {
-//   return c.map(el => {
-//     return {
-//       name: el,
-//       type: 'line',
-//       stack: 'Total',
-//       data: d.map(q => {
-//         console.log('ifebi', Object.keys(d).map(b => b == el))
-//         if (Object.keys(d).map(b => b == el)) {
-//           console.log(q)
-//           return d.map(o => o[el])
-
-//         }
-//         else {
-//           return 0;
-//         }
-//       })
-//     }
-//   })
-
-// }

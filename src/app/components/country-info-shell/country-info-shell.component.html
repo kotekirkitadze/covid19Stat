@@ -22,22 +22,25 @@
     </ng-template>
 </p-dropdown>
 
-<!-- <app-table
+  <app-table
         *ngIf="countriesInfo"
         [countriesInfo]="countriesInfo"
-        [selectedCountry]="selectedCountry"></app-table> -->
+        [selectedCountry]="selectedCountry"></app-table>
 
 
-<div class="p-field p-col-12 p-md-4">
-   <label for="range">Range</label>
-   <p-calendar
-       [(ngModel)]="rangeDates"
-       selectionMode="range"
-       [readonlyInput]="true"
-       inputId="range"
-       [minDate]="minDateValue"
-       [maxDate]="maxDateValue"></p-calendar>
+<div *ngIf="selectedCountry">
+  <div class="p-field p-col-12 p-md-4">
+    <label for="range">Range</label>
+    <p-calendar
+        [(ngModel)]="rangeDates"
+        selectionMode="range"
+        [readonlyInput]="true"
+        inputId="range"
+        [minDate]="minDateValue"
+        [maxDate]="maxDateValue"></p-calendar>
+  </div>
+
+  <app-line-chart [lineBarData]='lineBarData'></app-line-chart>
 </div>
 
 
-<app-line-chart [lineBarData]='lineBarData'></app-line-chart>
