@@ -10,7 +10,7 @@ export interface TimelineResultAPI {
   recovered: number;
   new_confirmed: number;
   new_recovered: number;
-  new_death: number;
+  new_deaths: number;
   active: number;
 };
 

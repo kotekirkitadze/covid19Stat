@@ -27,15 +27,16 @@
         [countriesInfo]="countriesInfo"
         [selectedCountry]="selectedCountry"></app-table>
 
-
-<div *ngIf="selectedCountry">
-  <div class="p-field p-col-12 p-md-4">
-    <label for="range">Range</label>
+<!-- *ngIf="!selectedCountry" -->
+<div>
+  <div class="p-field p-col-12 p-md-4 rangeCalendar">
+    <label for="range">Please choose Date range</label>
     <p-calendar
         [(ngModel)]="rangeDates"
         selectionMode="range"
         [readonlyInput]="true"
         inputId="range"
+        class="h"
         [minDate]="minDateValue"
         [maxDate]="maxDateValue"></p-calendar>
   </div>

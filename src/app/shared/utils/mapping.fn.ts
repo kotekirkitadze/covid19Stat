@@ -5,7 +5,7 @@ export function mapTimelineData(data: TimelineResultAPI): TimelineResult {
   return {
     date: data.date,
     active_cases: data.active,
-    today_death: data.new_death,
+    today_death: data.new_deaths,
     today_confirmed: data.new_confirmed,
     today_recovered: data.new_recovered,
     totalConfirmed: data.confirmed,
