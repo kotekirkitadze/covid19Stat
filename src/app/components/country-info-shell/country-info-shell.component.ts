@@ -147,6 +147,8 @@ export class CountryInfoShellComponent implements OnInit {
     this.minDateValue = new Date();
     this.maxDateValue = new Date();
     this.lineBarData = null;
+    this.lineBarData = null;
+    this.barCharData = null;
   }
 
   handleLastThreeMonthData(d: CountryData) {

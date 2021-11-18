@@ -1,3 +1,5 @@
+import { stOrNum } from "./countryInfo";
+
 export interface DataTimeline {
   data: TimelineResultAPI[]
 }
@@ -19,11 +21,11 @@ export interface TimelineResultAPI {
 export interface TimelineResult {
   // update_at: string;
   date: string;
-  totalDeaths: number;
-  totalConfirmed: number;
-  totalRecovered: number;
-  today_confirmed: number;
-  today_recovered: number;
-  today_death: number;
-  active_cases: number;
+  totalDeaths: stOrNum;
+  totalConfirmed: stOrNum;
+  totalRecovered: stOrNum;
+  today_confirmed: stOrNum;
+  today_recovered: stOrNum;
+  today_death: stOrNum;
+  active_cases: stOrNum;
 }

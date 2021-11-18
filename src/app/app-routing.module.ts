@@ -7,7 +7,7 @@ import { NotFoundComponent } from './shell/not-found/not-found.component';
 const ROUTES = [
   {
     path: '',
-    redirectTo: 'country-info',
+    redirectTo: 'timeline',
     pathMatch: 'full',
   },
   {

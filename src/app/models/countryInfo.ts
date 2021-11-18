@@ -1,19 +1,21 @@
 import { TimelineResult, TimelineResultAPI } from "./timeline";
 
+export type stOrNum = number | string
+
 export interface CountryData {
   name: string;
   code: string;
-  population: number;
+  population: stOrNum;
   dateOfUpdates: Date;
-  deathPercent: number;
-  curedPercent: number;
-  casesPerMillion: number;
-  totalCases: number;
-  currentDayCases: number;
-  totalDeathCases: number;
-  curerrentDayDeathCases: number;
-  totalCuredCases: number;
-  currentDayCuredCases: number;
+  deathPercent: stOrNum;
+  curedPercent: stOrNum;
+  casesPerMillion: stOrNum;
+  totalCases: stOrNum;
+  currentDayCases: stOrNum;
+  totalDeathCases: stOrNum;
+  curerrentDayDeathCases: stOrNum;
+  totalCuredCases: stOrNum;
+  currentDayCuredCases: stOrNum;
   timeline?: TimelineResult[]
 }
 

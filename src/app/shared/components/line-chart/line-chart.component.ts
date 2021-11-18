@@ -27,7 +27,7 @@ export class LineChartComponent implements OnInit {
     if (legendData != null) {
       this.chartOption = {
         title: {
-          text: 'Stacked Line'
+          text: ''
         },
         tooltip: {
           trigger: 'axis'

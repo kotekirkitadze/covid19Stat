@@ -27,8 +27,7 @@
         [countriesInfo]="countriesInfo"
         [selectedCountry]="selectedCountry"></app-table>
 
-<!-- *ngIf="!selectedCountry" -->
-<div>
+<div *ngIf="selectedCountry">
   <div class="p-field p-col-12 p-md-4 rangeCalendar">
     <label for="range">Please choose Date range</label>
     <p-calendar
