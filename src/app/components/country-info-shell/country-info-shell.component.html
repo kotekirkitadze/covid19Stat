@@ -39,8 +39,8 @@
         [maxDate]="maxDateValue"></p-calendar>
   </div>
 
-  <app-line-chart [lineBarData]='lineBarData'></app-line-chart>
-  <app-bar-chart [barCharData]="barCharData"></app-bar-chart>
+  <app-line-chart *ngIf="isPopulated" [lineBarData]='lineBarData'></app-line-chart>
+  <app-bar-chart *ngIf="isPopulated" [barCharData]="barCharData"></app-bar-chart>
 </div>
 
 

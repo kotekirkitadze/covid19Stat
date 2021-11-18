@@ -10,7 +10,7 @@ import { BarChartData } from 'src/app/models/eCharts-model';
 export class BarChartComponent implements OnInit {
   @Input()
   set barCharData(value: BarChartData) {
-    this.initCharBar(value.title, value.categories, value.structureData)
+    this.initCharBar(value?.title, value?.categories, value?.structureData)
   }
 
   constructor() { }

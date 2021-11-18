@@ -15,7 +15,7 @@ import { BarChartData, LineBarData } from 'src/app/models/eCharts-model';
 export class CountryInfoShellComponent implements OnInit {
 
   isPopulated: boolean = false;
-  handlePop() {
+  echartsVisibility() {
     this.isPopulated = !this.isPopulated
   }
 
@@ -73,12 +73,15 @@ export class CountryInfoShellComponent implements OnInit {
     if (value[1] != null) {
       this.lineBarData = this.mapLineBarData(this.forTransfering.reverse());
       this.barCharData = this.mapCharBarData(this.forTransfering);
+      this.isPopulated = true;
     }
   }
 
   _selectedCountry: Country;
   set selectedCountry(value) {
-    console.log('xxxx')
+    if (this._selectedCountry) {
+      this.echartsVisibility();
+    }
     this.resetData();
     this._selectedCountry = value;
     if (this._selectedCountry) {
