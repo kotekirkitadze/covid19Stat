@@ -3,7 +3,6 @@ import { BreakpointObserver } from '@angular/cdk/layout'
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -22,7 +21,6 @@ export class HeaderComponent implements OnInit {
         this.isScreenSmall = state.matches
       }
     );
-
   }
 
 }

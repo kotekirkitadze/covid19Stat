@@ -6,8 +6,8 @@ export interface LineBarData {
 
 export interface BarChartData {
   title?: string;
-  categories: string[];
-  structureData: {
+  categories?: string[];
+  structureData?: {
     name: string,
     type: string;
     data: number[]

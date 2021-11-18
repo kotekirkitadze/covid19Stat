@@ -32,7 +32,6 @@ export function mapCountryData(data: CountryDataAPI): CountryData {
   }
 }
 
-
 export function handleCountryMaping(el: CountryDataAPI): Country {
   return {
     code: el.code,

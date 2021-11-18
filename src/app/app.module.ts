@@ -15,7 +15,7 @@ import { NotFoundComponent } from './shell/not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ViewComponentsModule } from './shared/material.module';
 import { HeaderComponent } from './shell/header/header.component';
-import { VisualizationCharComponentComponent } from './shared/components/visualization-char-component/visualization-char-component.component';
+import { VisualizationCharComponentComponent } from './shared/components/bar-chartSimple-component/bar-chartSimple.component';
 import { CountryInfoShellComponent } from './components/country-info-shell/country-info-shell.component';
 import { TableComponent } from './shared/components/table/table.component';
 import { LineChartComponent } from './shared/components/line-chart/line-chart.component'

@@ -8,8 +8,6 @@ import { BarChartData } from 'src/app/models/eCharts-model';
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit {
-
-
   @Input()
   set barCharData(value: BarChartData) {
     this.initCharBar(value.title, value.categories, value.structureData)
@@ -51,11 +49,6 @@ export class BarChartComponent implements OnInit {
         ...structure
       ]
     };
-
-
   }
-
-
-
 
 }

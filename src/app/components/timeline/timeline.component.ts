@@ -14,7 +14,6 @@ import { handleDateFormat } from '../../shared/utils/handling.fn'
 export class TimelineComponent implements OnInit {
 
   chartOption: EChartsOption;
-  cols: any;
 
   data: TimelineResult[];
   selectedData: TimelineResult[];
@@ -31,13 +30,13 @@ export class TimelineComponent implements OnInit {
     return handleDateFormat(new Date());
   }
 
+  constructor(private apiService: DataApiService) { }
+
   handleSelectedDay(date: string) {
     this.selectedData = this.data.filter(el => {
       return el.date == date
     });
   }
-
-  constructor(private apiService: DataApiService) { }
 
   ngOnInit() {
     this.apiService.getTimelineData().pipe(

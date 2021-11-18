@@ -31,6 +31,5 @@ import { TableModule } from 'primeng/table';
     CalendarModule,
     SelectButtonModule,
     TableModule
-
   ]
 }) export class ViewComponentsModule { }

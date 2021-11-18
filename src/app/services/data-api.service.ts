@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { CountryDataAPI, DataCountryInfoAPI } from '../models/countryInfo';
 import { DataTimeline, TimelineResultAPI } from '../models/timeline';
 
@@ -18,8 +18,7 @@ export class DataApiService {
 
   getTimelineData(): Observable<TimelineResultAPI[]> {
     return this.http.get<DataTimeline>(this.timeline_url).pipe(
-      map(el => el.data),
-      tap(console.log)
+      map(el => el.data)
     );
   }
 
@@ -33,6 +32,5 @@ export class DataApiService {
     return this.http.get<DataCountryInfoAPI>(`${this.country_url}/${code}`)
       .pipe(map(el => el.data))
   }
-
 
 }

@@ -7,11 +7,6 @@ import { Country, CountryData } from 'src/app/models/countryInfo';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-
-  private _countriesInfo: CountryData[];
-  temp: CountryData
-  _selectedCountry: CountryData[] | null;
-
   @Input()
   set selectedCountry(value: Country) {
     this._selectedCountry = this._countriesInfo.filter(el => el.code == value?.code ? el : null);
@@ -21,6 +16,9 @@ export class TableComponent implements OnInit {
   set countriesInfo(value: CountryData[]) {
     this._countriesInfo = value;
   };
+
+  private _countriesInfo: CountryData[];
+  private _selectedCountry: CountryData[] | null;
 
   get countriesInfo() {
     return this._countriesInfo;

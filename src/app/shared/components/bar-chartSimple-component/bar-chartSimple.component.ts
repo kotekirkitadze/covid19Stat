@@ -3,9 +3,9 @@ import { EChartsOption } from 'echarts';
 import { TimelineResult } from 'src/app/models/timeline';
 
 @Component({
-  selector: 'app-visualization-char-component',
-  templateUrl: './visualization-char-component.component.html',
-  styleUrls: ['./visualization-char-component.component.scss']
+  selector: 'app-bar-chartSimple-component',
+  templateUrl: './bar-chartSimple.component.html',
+  styleUrls: ['./bar-chartSimple.component.scss']
 })
 export class VisualizationCharComponentComponent implements OnInit {
 
@@ -24,7 +24,6 @@ export class VisualizationCharComponentComponent implements OnInit {
   }
 
   chartOption: EChartsOption;
-
 
   initChart(data: TimelineResult, categories: string[]) {
     this.chartOption = {
@@ -67,8 +66,5 @@ export class VisualizationCharComponentComponent implements OnInit {
         }
       ]
     };
-
   }
-
-
 }

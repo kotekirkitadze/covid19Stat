@@ -8,7 +8,6 @@ import { LineBarData } from 'src/app/models/eCharts-model';
   styleUrls: ['./line-chart.component.scss']
 })
 export class LineChartComponent implements OnInit {
-
   @Input()
   set lineBarData(value: LineBarData) {
     this.initChart(value?.structureData, value?.category, value?.legend)
@@ -23,7 +22,6 @@ export class LineChartComponent implements OnInit {
   chartOption: EChartsOption;
 
   initChart(structureData: any[], categoryData: string[], legendData: string[]) {
-    console.log(typeof structureData[0])
     if (legendData != null) {
       this.chartOption = {
         title: {

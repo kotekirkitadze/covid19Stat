@@ -1,14 +1,12 @@
-
 <div class="dataContainer">
-  <app-visualization-char-component
+  <app-bar-chartSimple-component
       class="dataTable"
       [categories]="categories"
       [chosenData]='selectedData ? selectedData[0] : null'
       >
-    </app-visualization-char-component>
+    </app-bar-chartSimple-component>
 
   <div class="p-field p-col-12 p-md-4 calendar">
-        <!-- <label for="basic">Choose Date: </label> -->
         <p-calendar [ngModel]="date"
                     (ngModelChange)="date=$event"
                     [showIcon]="true"

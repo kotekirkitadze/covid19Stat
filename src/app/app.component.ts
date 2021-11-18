@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DataApiService } from './services/data-api.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,8 +7,7 @@ import { DataApiService } from './services/data-api.service';
 export class AppComponent {
   title = 'Covid Statistic';
 
-  constructor(private http: DataApiService) {
-
+  constructor() {
   }
 
 }
